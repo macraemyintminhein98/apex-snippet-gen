@@ -3,60 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SnipGen AI</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <title>Apex Code Snippet Generator</title>
+    <meta name="description" content="Generate code snippets with AI for React, Python, SQL and more.">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
-        body { font-family: 'Inter', sans-serif; }
+        body { font-family: sans-serif; margin: 20px; background-color: #f4f7f6; color: #333; }
+        .container { max-width: 800px; margin: auto; background: #fff; padding: 25px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+        h1 { text-align: center; color: #007bff; margin-bottom: 25px; }
+        textarea { width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 6px; box-sizing: border-box; font-size: 1rem; min-height: 100px; }
+        pre { background-color: #e9ecef; padding: 15px; border-radius: 6px; overflow-x: auto; white-space: pre-wrap; word-break: break-word; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace; }
+        button { display: block; width: 100%; padding: 12px 20px; background-color: #28a745; color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 1rem; transition: background-color 0.2s; }
+        button:hover { background-color: #218838; }
+        .price { text-align: center; margin-top: 20px; font-size: 1.2rem; color: #555; }
+        footer { text-align: center; margin-top: 30px; font-size: 0.85rem; color: #777; }
     </style>
 </head>
-<body class="bg-gray-100 flex items-center justify-center min-h-screen p-4">
-    <div class="bg-white p-8 rounded-lg shadow-xl max-w-md w-full text-center">
-        <h1 class="text-4xl font-bold text-gray-900 mb-4">SnipGen AI</h1>
-        <p class="text-lg text-gray-600 mb-6">Your AI-powered code snippet generator.</p>
-
-        <div class="mb-4">
-            <textarea id="prompt" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" rows="3" placeholder="e.g., Python function to reverse a string"></textarea>
-        </div>
-
-        <div class="mb-6 flex space-x-2">
-            <select id="language" class="flex-grow p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-                <option value="python">Python</option>
-                <option value="javascript">JavaScript</option>
-                <option value="java">Java</option>
-                <option value="csharp">C#</option>
-                <option value="go">Go</option>
-            </select>
-            <button id="generateBtn" class="bg-blue-600 text-white px-6 py-3 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">Generate</button>
-        </div>
-
-        <pre id="output" class="bg-gray-800 text-white text-left p-4 rounded-md overflow-x-auto min-h-[100px] text-sm"><code class="language-markup">// Your generated code will appear here.</code></pre>
-
-        <div class="mt-6">
-            <p class="text-sm text-gray-500">Want more snippets? <a href="#" class="text-blue-600 hover:underline">Unlock Unlimited</a></p>
+<body>
+    <div class="container">
+        <h1>⚡ Apex Snippet Gen</h1>
+        <p style="text-align: center; margin-bottom: 25px; color: #666;">Generate common code snippets instantly. Fast, simple, AI-powered.</p>
+        <textarea id="promptInput" placeholder="e.g., 'React functional component with a state hook', 'Python flask endpoint for users', 'SQL select all columns from products table where price > 50'"></textarea>
+        <button id="generateBtn">Generate Snippet</button>
+        <p style="margin-top: 20px; font-weight: bold;">Generated Code:</p>
+        <pre id="outputCode"><code>// Your generated code will appear here.</code></pre>
+        <div class="price">
+            <p>Access unlimited generations for just <strong>$9.99</strong>!</p>
+            <button onclick="alert('Stripe checkout integrated here!')" style="background-color: #673AB7; margin-top: 10px;">Buy Now</button>
         </div>
     </div>
-
+    <footer>
+        <p>&copy; 2023 Apex Snippet Gen. All rights reserved.</p>
+    </footer>
     <script>
-      document.getElementById('generateBtn').addEventListener('click', async () => {
-          const prompt = document.getElementById('prompt').value;
-          const language = document.getElementById('language').value;
-          const output = document.getElementById('output');
-          output.textContent = 'Generating...';
-          // In a real app, this would be an API call to your backend.
-          try {
-              const response = await fetch('/api/generate-snippet', {
-                  method: 'POST',
-                  headers: { 'Content-Type': 'application/json' },
-                  body: JSON.stringify({ prompt, language })
-              });
-              const data = await response.json();
-              output.textContent = data.snippet || 'Error generating snippet.';
-          } catch (error) {
-              output.textContent = 'Failed to fetch snippet.';
-              console.error('Error:', error);
-          }
-      });
+        document.getElementById('generateBtn').addEventListener('click', async () => {
+            const prompt = document.getElementById('promptInput').value;
+            document.getElementById('outputCode').innerHTML = '<code>Generating...</code>';
+            // In a real app, this would be an API call to your backend model
+            // For this static demo, we simulate a response
+            setTimeout(() => {
+                if (prompt.toLowerCase().includes('react')) {
+                    document.getElementById('outputCode').innerHTML = '<code>import React, { useState } from \'react\';\n\nconst MyComponent = ({ prop1 }) => {\n  const [count, setCount] = useState(0);\n\n  return (\n    <div>\n      <h1>Hello from MyComponent!</h1>\n      <p>Count: {count}</p>\n      <button onClick={() => setCount(count + 1)}>Increment</button>\n      <p>Prop: {prop1}</p>\n    </div>\n  );\n};\n\nexport default MyComponent;</code>';
+                } else if (prompt.toLowerCase().includes('python flask')) {
+                    document.getElementById('outputCode').innerHTML = '<code>from flask import Flask, jsonify, request\n\napp = Flask(__name__)\n\n@app.route(\'/api/users\', methods=[\'GET\'])\ndef get_users():\n    users = [{\'id\': 1, \'name\': \'Alice\'}, {\'id\': 2, \'name\': \'Bob\'}]\n    return jsonify(users)\n\n@app.route(\'/api/users\', methods=[\'POST\'])\ndef create_user():\n    new_user = request.json\n    # Save new_user to database\n    return jsonify({\'message\': \'User created\', \'user\': new_user}), 201\n\nif __name__ == \'__main__\':\n    app.run(debug=True)</code>';
+                } else if (prompt.toLowerCase().includes('sql select')) {
+                    document.getElementById('outputCode').innerHTML = '<code>SELECT column1, column2\nFROM your_table_name\nWHERE condition = \'value\';</code>';
+                } else {
+                    document.getElementById('outputCode').innerHTML = '<code>// Sorry, could not generate a specific snippet for that. Try React, Python Flask, or SQL SELECT queries!</code>';
+                }
+            }, 1500); // Simulate API call delay
+        });
     </script>
 </body>
 </html>
