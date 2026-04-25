@@ -1,17 +1,16 @@
-# SnipGen AI
+# Apex Snippet Gen
 
-SnipGen AI is a simple, AI-powered web application designed to quickly generate common code snippets based on natural language prompts. Perfect for junior developers, students, and anyone needing quick boilerplate code without the hassle.
+AI-powered code snippet generator for junior developers, freelancers, and students. Get common boilerplate code for React, Python (Flask), SQL, and more, instantly.
 
-## Features
+## Features:
+- Natural language input for code generation.
+- Supports popular languages/frameworks like React, Python, SQL.
+- Minimal UI for maximum speed.
 
-*   **Natural Language Input**: Describe the snippet you need.
-*   **Multi-language Support**: Generate code in Python, JavaScript, Java, C#, and Go.
-*   **Instant Results**: Get your code snippets fast.
+## How to Use (Local Development)
+1. Open `index.html` in your web browser.
+2. Enter your desired code snippet description in the text area.
+3. Click "Generate Snippet" to see the AI-generated code.
 
-## Get Started
-
-Visit [snipgen.ai](https://snipgen.ai) to start generating code!
-
-## Development
-
-This project is built using Next.js, hosted on Vercel, and leverages a backend API for AI code generation. Basic UI with Tailwind CSS.
+## Pricing
+Unlock unlimited snippet generations for just $9.99.
